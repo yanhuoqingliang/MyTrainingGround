@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket通信</title>
+</head>
+<body>
+  <input type="text" id="messageInput">
+  <button onclick="sendMessage()">发送消息</button>
+
+  <script>
+    // 创建 WebSocket 连接
+    var socket = new WebSocket("ws://localhost:8888/ws");
+
+    // 监听连接成功事件
+    socket.onopen = function() {
+      console.log("WebSocket连接已建立");
+    };
+
+    // 监听收到消息事件
+    socket.onmessage = function(event) {
+      var message = event.data;
+      console.log(message);
+    };
+
+    // 监听连接关闭事件
+    socket.onclose = function() {
+      console.log("WebSocket连接已关闭");
+    };
+
+    // 发送消息
+    function sendMessage() {
+      var messageInput = document.getElementById("messageInput");
+      var message = messageInput.value;
+      socket.send(message);
+      messageInput.value = ""; // 清空输入框
+    }
+  </script>
+</body>
+</html>
