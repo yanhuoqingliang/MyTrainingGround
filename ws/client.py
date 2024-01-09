@@ -75,7 +75,7 @@ class ClientDevice:
         self._push_file("scrcpy-server", "/data/local/tmp/scrcpy-server", zipfile_path=scrcpy_zippath)
 
         commands2 = [
-            "/Users/wangqiang/Library/Android/sdk/platform-tools/adb", "-s", self.device_id, "shell",
+            "adb", "-s", self.device_id, "shell",
             "CLASSPATH=/data/local/tmp/scrcpy-server",
             "app_process",
             "/",

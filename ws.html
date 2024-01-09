@@ -20,7 +20,7 @@
             });
     // 创建 WebSocket 连接
     var socket = new WebSocket("ws://localhost:20001/screen");
-
+    socket.binaryType = 'arraybuffer';
     // 监听连接成功事件
     socket.onopen = function() {
       console.log("WebSocket连接已建立");
