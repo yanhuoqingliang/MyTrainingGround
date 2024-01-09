@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket通信</title>
+</head>
+<body>
+
+  <video id="screen-player" muted autoplay></video>
+
+  <script type="text/javascript" src="dist/jmuxer.min.js"></script>
+
+  <script>
+    var jmu = new JMuxer({
+                node: 'screen-player',
+                mode: 'video',
+                flushingTime: 0,
+                fps: 30,
+                debug: false
+            });
+    // 创建 WebSocket 连接
+    var socket = new WebSocket("ws://localhost:20001/screen");
+
+    // 监听连接成功事件
+    socket.onopen = function() {
+      console.log("WebSocket连接已建立");
+    };
+
+    // 监听收到消息事件
+    socket.onmessage = function(event) {
+      var message = event.data;
+      console.log(message);
+      jmu.feed({
+        video: new Uint8Array(event.data)
+      });
+    };
+
+    // 监听连接关闭事件
+    socket.onclose = function() {
+      console.log("WebSocket连接已关闭");
+    };
+
+    // 发送消息
+    function sendMessage() {
+      var messageInput = document.getElementById("messageInput");
+      var message = messageInput.value;
+      socket.send(message);
+      messageInput.value = ""; // 清空输入框
+    }
+  </script>
+</body>
+</html>

@@ -2,3 +2,4 @@
 .pytest_cache/
 allure-report/
 venv/
+ws/vendor

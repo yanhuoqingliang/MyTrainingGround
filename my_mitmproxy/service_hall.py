@@ -66,5 +66,3 @@ def response(flow: http.HTTPFlow) -> None:
         request_json = flow.request.json()
         response_json = flow.response.json()
         pass
-
-        

@@ -4,3 +4,8 @@ pluggy==1.3.0
 pytest==7.4.4
 mitmproxy==8.0.0
 deepdiff==6.7.1
+h26x-extractor==0.8.0
+bitstring
+logzero==1.5.*
+requests
+adbutils>=0.8.1,<1.0
