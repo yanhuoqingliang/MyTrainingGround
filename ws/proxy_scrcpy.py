@@ -29,6 +29,7 @@ class ScrcpyWSHandler(websocket.WebSocketHandler):
 
     async def open(self):
         # 获取当前连接对应的device_client
+        print(self.request.path)
         old_device_client = self.DEVICE_CLIENT_DICT.get(self.device_id, None)
         if old_device_client:
             self.device_client = old_device_client
@@ -44,6 +45,7 @@ class ScrcpyWSHandler(websocket.WebSocketHandler):
             self.device_client.ws_touch_list.append(self)
 
     async def on_message(self, text_data):
+        print(self.request.path)
         """receive used to control device"""
         data = json.loads(text_data)
         # touch
@@ -76,7 +78,7 @@ def start_server():
                         help="scrcpy server port")
     args = parser.parse_args()
     global DEVICE_ID
-    DEVICE_ID = "P7CDU17B20017905"
+    DEVICE_ID = "emulator-5554"
 
     app = tornado.web.Application([
         (r"/screen", ScrcpyWSHandler),

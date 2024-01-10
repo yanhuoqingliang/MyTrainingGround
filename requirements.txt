@@ -9,3 +9,5 @@ bitstring
 logzero==1.5.*
 requests
 adbutils>=0.8.1,<1.0
+av==9.0.0
+opencv-python
