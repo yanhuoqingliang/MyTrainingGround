@@ -1,4 +1,5 @@
 from mitmproxy import http
+import json
 
 
 def write_data(filepath, data):
@@ -12,6 +13,15 @@ def request(flow: http.HTTPFlow) -> None:
 
 
 def response(flow: http.HTTPFlow) -> None:
+
+    if '/BASEURL/hozo-market/api/fission/share/brief/info/AB1751885247584141312' in flow.request.pretty_url:
+        request_data = json.loads(flow.request.text)
+        response_data = json.loads(flow.response.text)
+
+        response_data['params']['fissionInfo']['viewNumber'] = 10200
+        response_text = json.dumps(response_data)
+        write_data('./service_hall.txt', response_text)
+        flow.response.text = response_text
 
     if '/hozo-main/servicehall/servicepage/list' in flow.request.pretty_url:
 

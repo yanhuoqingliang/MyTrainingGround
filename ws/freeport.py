@@ -22,3 +22,12 @@ class FreePort(object):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             return s.connect_ex(('localhost', port)) == 0
 
+
+if __name__ == "__main__":
+    import os
+    print(__file__)
+    print(os.path.dirname(__file__))
+    here = os.path.abspath(os.path.dirname(__file__))
+    print(here)
+
+

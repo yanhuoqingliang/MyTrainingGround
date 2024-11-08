@@ -1,3 +1,5 @@
+import os
+
 import allure
 import pytest
 
@@ -50,3 +52,4 @@ def test_login(x, y, my_fixture):
 
 if __name__ == "__main__":
     pytest.main()
+

@@ -7,6 +7,8 @@ client = scrcpy.Client(device="123f07fc")
 def on_frame(frame):
     if frame is not None:
         # frame is an bgr numpy ndarray (cv2' default format)
+        cv2.namedWindow("viz", cv2.WINDOW_NORMAL)
+        # cv2.resizeWindow("viz", 360, 760)
         cv2.imshow("viz", frame)
     cv2.waitKey(10)
 

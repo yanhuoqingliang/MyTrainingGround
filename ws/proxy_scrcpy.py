@@ -78,7 +78,7 @@ def start_server():
                         help="scrcpy server port")
     args = parser.parse_args()
     global DEVICE_ID
-    DEVICE_ID = "emulator-5554"
+    DEVICE_ID = "123f07fc"
 
     app = tornado.web.Application([
         (r"/screen", ScrcpyWSHandler),
